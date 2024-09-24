@@ -25,14 +25,21 @@ type StudentSearchByIDResponse struct {
 	StudentData StudentDTO
 }
 
+type StudentSearchByGroupIDRequest struct {
+	GroupID uuid.UUID
+}
+
+type StudentSearchByGroupIDResponse struct {
+	StudentsInGroup []StudentDTO
+}
+
 type TeacherDTO struct {
-	ID           uuid.UUID
-	FirstName    string
-	LastName     string
-	MiddleName   string
-	ReportEmail  string
-	ContactEmail string
-	Username     string
+	ID          uuid.UUID
+	FirstName   string
+	LastName    string
+	MiddleName  string
+	ReportEmail string
+	Username    string
 }
 
 type TeacherSearchByIDRequest struct {
@@ -41,4 +48,13 @@ type TeacherSearchByIDRequest struct {
 
 type TeacherSearchByIDResponse struct {
 	TeacherData TeacherDTO
+}
+
+type GroupSearchRequest struct {
+	SpecializationCode string
+	GroupNumber        string
+}
+
+type GroupSearchResponse struct {
+	MatchedGroups []GroupDTO
 }

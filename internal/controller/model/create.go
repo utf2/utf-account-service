@@ -2,42 +2,32 @@ package transfer
 
 import "github.com/google/uuid"
 
-type GroupCreateRequest struct {
+type StudentCreateRequest struct {
+	FirstName          string
+	LastName           string
+	MiddleName         string
 	SpecializationCode string
 	GroupNumber        string
+	EducationalEmail   string
+	Username           string
+	Password           string
 }
 
-type GroupCreateResponse struct {
-	Success bool
-	GroupID uuid.UUID
-}
-
-type StudentCreateRequest struct {
-	FirstName        string
-	LastName         string
-	MiddleName       string
-	EducationalEmail string
-	Username         string
-	Password         string
-	GroupID          uuid.UUID
-}
-
-type StudentRegisterResponse struct {
+type StudentCreateResponse struct {
 	Success   bool
 	StudentID uuid.UUID
 }
 
-type TeacherRegisterRequest struct {
-	FirstName    string
-	LastName     string
-	MiddleName   string
-	ReportEmail  string
-	ContactEmail string
-	Username     string
-	Password     string
+type TeacherCreateRequest struct {
+	FirstName   string
+	LastName    string
+	MiddleName  string
+	ReportEmail string
+	Username    string
+	Password    string
 }
 
-type TeacherRegisterResponse struct {
+type TeacherCreateResponse struct {
 	Success   bool
 	TeacherID uuid.UUID
 }
