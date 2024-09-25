@@ -3,6 +3,7 @@ package transfer
 import "github.com/google/uuid"
 
 type GroupDTO struct {
+	ID                 uuid.UUID
 	SpecializationCode string
 	GroupNumber        string
 }
