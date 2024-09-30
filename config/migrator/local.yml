@@ -1,0 +1,7 @@
+migrations_path: "./migration/scripts"
+storage:
+  host: "localhost"
+  port: "5432"
+  database_name: "utf-account-service-postgres-db"
+  user: "user"
+  password: "password"

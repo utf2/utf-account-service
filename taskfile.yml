@@ -4,3 +4,6 @@ tasks:
     run-local:
         cmds:
             - go run ./cmd/app/main.go --config ./config/app/local.yml
+    migrate-local:
+        cmds:
+        - go run ./cmd/migrator/migrate.go --config ./config/migrator/local.yml
