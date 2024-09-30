@@ -14,7 +14,6 @@ type StudentCreateRequest struct {
 }
 
 type StudentCreateResponse struct {
-	Success   bool
 	StudentID uuid.UUID
 }
 
@@ -28,6 +27,5 @@ type TeacherCreateRequest struct {
 }
 
 type TeacherCreateResponse struct {
-	Success   bool
 	TeacherID uuid.UUID
 }

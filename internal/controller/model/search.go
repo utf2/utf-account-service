@@ -2,10 +2,12 @@ package transfer
 
 import "github.com/google/uuid"
 
-type GroupDTO struct {
-	ID                 uuid.UUID
-	SpecializationCode string
-	GroupNumber        string
+type StudentSearchByIDRequest struct {
+	StudentID uuid.UUID
+}
+
+type StudentSearchByIDResponse struct {
+	StudentData StudentDTO
 }
 
 type StudentDTO struct {
@@ -18,12 +20,10 @@ type StudentDTO struct {
 	Group            GroupDTO
 }
 
-type StudentSearchByIDRequest struct {
-	StudentID uuid.UUID
-}
-
-type StudentSearchByIDResponse struct {
-	StudentData StudentDTO
+type GroupDTO struct {
+	ID                 uuid.UUID
+	SpecializationCode string
+	GroupNumber        string
 }
 
 type StudentSearchByGroupIDRequest struct {
@@ -34,6 +34,14 @@ type StudentSearchByGroupIDResponse struct {
 	StudentsInGroup []StudentDTO
 }
 
+type TeacherSearchByIDRequest struct {
+	TeacherID uuid.UUID
+}
+
+type TeacherSearchByIDResponse struct {
+	TeacherData TeacherDTO
+}
+
 type TeacherDTO struct {
 	ID          uuid.UUID
 	FirstName   string
@@ -41,14 +49,6 @@ type TeacherDTO struct {
 	MiddleName  string
 	ReportEmail string
 	Username    string
-}
-
-type TeacherSearchByIDRequest struct {
-	TeacherID uuid.UUID
-}
-
-type TeacherSearchByIDResponse struct {
-	TeacherData TeacherDTO
 }
 
 type GroupSearchRequest struct {
