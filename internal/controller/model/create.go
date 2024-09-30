@@ -3,14 +3,18 @@ package transfer
 import "github.com/google/uuid"
 
 type StudentCreateRequest struct {
-	FirstName          string
-	LastName           string
-	MiddleName         string
+	FirstName        string
+	LastName         string
+	MiddleName       string
+	Group            GroupData
+	EducationalEmail string
+	Username         string
+	Password         string
+}
+
+type GroupData struct {
 	SpecializationCode string
 	GroupNumber        string
-	EducationalEmail   string
-	Username           string
-	Password           string
 }
 
 type StudentCreateResponse struct {
