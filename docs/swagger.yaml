@@ -1,0 +1,60 @@
+basePath: /api/v1
+definitions:
+  transfer.TeacherCreateRequest:
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      middle_name:
+        type: string
+      password:
+        type: string
+      report_email:
+        type: string
+      username:
+        type: string
+    required:
+    - first_name
+    - last_name
+    - password
+    - report_email
+    - username
+    type: object
+  transfer.TeacherCreateResponse:
+    properties:
+      teacherID:
+        type: string
+    type: object
+info:
+  contact:
+    email: pyankovdaniildev@gmail.com
+    name: Pyankov Daniil
+    url: http://t.me/lifelessdev
+  description: service responsible for operations with students and teachers accounts
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: utf-account-service
+  version: 1.0.0
+paths:
+  /api/v1/teacher:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Required field values to create teacher
+        in: body
+        name: teacherData
+        required: true
+        schema:
+          $ref: '#/definitions/transfer.TeacherCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/transfer.TeacherCreateResponse'
+      summary: create a new teacher
+swagger: "2.0"

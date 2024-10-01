@@ -3,6 +3,8 @@ version: "3"
 tasks:
     run-local:
         cmds:
+            - rm -rf ./docs
+            - swag init -g ./cmd/app/main.go
             - go run ./cmd/app/main.go --config ./config/app/local.yml
     migrate-local:
         cmds:

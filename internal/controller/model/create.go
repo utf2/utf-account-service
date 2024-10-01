@@ -22,12 +22,12 @@ type StudentCreateResponse struct {
 }
 
 type TeacherCreateRequest struct {
-	FirstName   string
-	LastName    string
-	MiddleName  string
-	ReportEmail string
-	Username    string
-	Password    string
+	FirstName   string `json:"first_name" validate:"required"`
+	LastName    string `json:"last_name" validate:"required"`
+	MiddleName  string `json:"middle_name"`
+	ReportEmail string `json:"report_email" validate:"required,email"`
+	Username    string `json:"username" validate:"required"`
+	Password    string `json:"password" validate:"required"`
 }
 
 type TeacherCreateResponse struct {
