@@ -14,3 +14,9 @@ func ConvertTeacherCreateRequest(request transfer.TeacherCreateRequest) model.Te
 		Username:    request.Username,
 	}
 }
+
+func ConvertTeacherVerifyRequest(request transfer.TeacherVerifyRequest) model.TeacherVerify {
+	return model.TeacherVerify{
+		TeacherID: request.TeacherID,
+	}
+}

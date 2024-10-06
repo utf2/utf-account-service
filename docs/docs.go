@@ -52,6 +52,33 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/api/v1/teacher/verify": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "verify teacher account",
+                "parameters": [
+                    {
+                        "description": "Request body with verifying teacher ID",
+                        "name": "teacherID",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/transfer.TeacherVerifyRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -89,6 +116,17 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "teacherID": {
+                    "type": "string"
+                }
+            }
+        },
+        "transfer.TeacherVerifyRequest": {
+            "type": "object",
+            "required": [
+                "teacher_id"
+            ],
+            "properties": {
+                "teacher_id": {
                     "type": "string"
                 }
             }

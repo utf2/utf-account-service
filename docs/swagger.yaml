@@ -26,6 +26,13 @@ definitions:
       teacherID:
         type: string
     type: object
+  transfer.TeacherVerifyRequest:
+    properties:
+      teacher_id:
+        type: string
+    required:
+    - teacher_id
+    type: object
 info:
   contact:
     email: pyankovdaniildev@gmail.com
@@ -57,4 +64,21 @@ paths:
           schema:
             $ref: '#/definitions/transfer.TeacherCreateResponse'
       summary: create a new teacher
+  /api/v1/teacher/verify:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Request body with verifying teacher ID
+        in: body
+        name: teacherID
+        required: true
+        schema:
+          $ref: '#/definitions/transfer.TeacherVerifyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: verify teacher account
 swagger: "2.0"

@@ -30,6 +30,7 @@ func NewTeacherController(log *slog.Logger, service TeacherService) *TeacherCont
 
 type TeacherService interface {
 	Save(context.Context, model.Teacher) (uuid.UUID, error)
+	Verify(context.Context, model.TeacherVerify) error
 }
 
 // @Summary create a new teacher
@@ -85,8 +86,52 @@ func (controller *TeacherController) Create(w http.ResponseWriter, r *http.Reque
 	return nil
 }
 
+// @Summary verify teacher account
+// @Accept json
+// @Produce json
+// @Param teacherID body transfer.TeacherVerifyRequest true "Request body with verifying teacher ID"
+// @Success 200
+// @Router /api/v1/teacher/verify [post]
 func (controller *TeacherController) Verify(w http.ResponseWriter, r *http.Request) *httperror.HttpError {
-	panic("not implemented!")
+	const op = "controller.TeacherController.Verify()"
+
+	log := controller.log.With(
+		slog.String("op", op),
+		slog.String("requestID", middleware.GetReqID(r.Context())),
+	)
+
+	var request transfer.TeacherVerifyRequest
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		log.Error("error while decoding teacher verify request body from JSON", logger.Error(err))
+		return &httperror.HttpError{
+			Err:          err,
+			StatusCode:   http.StatusBadRequest,
+			ErrorMessage: "Error while decoding teacher verify request body from JSON",
+		}
+	}
+
+	if err := validator.New().Struct(request); err != nil {
+		log.Error("error while validating teacher verify request body from JSON", logger.Error(err))
+		return &httperror.HttpError{
+			Err:          err,
+			StatusCode:   http.StatusBadRequest,
+			ErrorMessage: "Error while validating teacher verify request body from JSON",
+		}
+	}
+
+	teacherVerify := converter.ConvertTeacherVerifyRequest(request)
+	ctx := context.WithValue(context.Background(), middleware.RequestIDKey, middleware.GetReqID(r.Context()))
+	if err := controller.service.Verify(ctx, teacherVerify); err != nil {
+		return &httperror.HttpError{
+			Err:          err,
+			StatusCode:   http.StatusBadRequest,
+			ErrorMessage: "Error while verifying teacher",
+		}
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	return nil
 }
 
 func (controller *TeacherController) SearchByID(w http.ResponseWriter, r *http.Request) *httperror.HttpError {

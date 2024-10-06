@@ -7,5 +7,5 @@ type StudentVerifyRequest struct {
 }
 
 type TeacherVerifyRequest struct {
-	TeacherID uuid.UUID
+	TeacherID uuid.UUID `json:"teacher_id" validate:"required"`
 }
